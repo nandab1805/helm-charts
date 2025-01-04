@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+    demo: helm
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels: #replica label of the pods
+      app: nginx
+      demo: helm
+  template: #pod definition
+    metadata:
+      labels:
+        app: nginx
+        demo: helm
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports: 
+        - containerPort: 80
